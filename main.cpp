@@ -32,11 +32,11 @@ int main(int argc, char **argv)
         camera.read(originalImg);
 
     } else {
-        std::string image_path = cv::samples::findFile("img.png");
+        std::string image_path = cv::samples::findFile("../img.png");
         originalImg = cv::imread(image_path, cv::IMREAD_COLOR);
     }
 
-    Regocnizer regocnizer(originalImg);
+    Regocnizer regocnizer;
 
     if(clParser.get<std::string>("mode") == "i")
     {

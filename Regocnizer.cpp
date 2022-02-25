@@ -135,12 +135,12 @@ cv::Mat Regocnizer::shapeDetection(cv::Mat originalImg, cv::Mat colourImg, std::
 void Regocnizer::filterContinues(cv::Mat originalImg) {
     clock_t time = clock();
 
-    cv::Mat orangeImg = filterColour(ogImg, orangeLower, orangeUpper);
-    cv::Mat greenImg = filterColour(ogImg, greenLower, greenUpper);
-    cv::Mat pinkImg = filterColour(ogImg, pinkLower, pinkUpper);
-    cv::Mat yellowImg = filterColour(ogImg, yellowLower, yellowUpper);
+    cv::Mat orangeImg = filterColour(originalImg, orangeLower, orangeUpper);
+    cv::Mat greenImg = filterColour(originalImg, greenLower, greenUpper);
+    cv::Mat pinkImg = filterColour(originalImg, pinkLower, pinkUpper);
+    cv::Mat yellowImg = filterColour(originalImg, yellowLower, yellowUpper);
 
-    originalImg = shapeDetection(ogImg, orangeImg, "Oranje", time);
+    originalImg = shapeDetection(originalImg, orangeImg, "Oranje", time);
     originalImg = shapeDetection(originalImg, greenImg, "Groen", time);
     originalImg = shapeDetection(originalImg, pinkImg, "Roze", time);
     originalImg = shapeDetection(originalImg, yellowImg, "Geel", time);

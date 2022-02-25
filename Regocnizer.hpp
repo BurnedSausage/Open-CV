@@ -22,7 +22,7 @@ public:
      * Constructor
      * @param ogImage construct with the image to use
      */
-    Regocnizer(cv::Mat ogImage){ogImg = ogImage};
+    //Regocnizer(cv::Mat ogImage){ogImg = ogImage};
     /**
      * destructor
      */
@@ -94,10 +94,10 @@ private:
     cv::Scalar pinkLower = cv::Scalar(120,120,180);
     cv::Scalar pinkUpper = cv::Scalar(180,255,255);
 
-//    int batch = 0;
-//    cv::Mat ogImg;
-//    std::vector<std::string> shaps;
-//    std::vector<std::string> colors;
+    int batch = 0;
+    cv::Mat ogImg;
+    std::vector<std::string> shaps;
+    std::vector<std::string> colors;
 
 };
 

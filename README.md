@@ -9,4 +9,4 @@ Door Koen Severijns
 
 ### Run
     cd build
-    ./opencv-project -mode=(i voor interactief/b voor batch) -file=batch.txt(of een andere batch file) -webcam=(-1 voor standaard img/webcam ID)
+    ./opencv-project -mode=(i voor interactief/b voor batch) -file=../batch.txt(of een andere batch file) -webcam=(-1 voor standaard img/webcam ID)
