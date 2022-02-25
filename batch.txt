@@ -1,0 +1,6 @@
+# Kleur opties: groen, roze, geel, oranje.
+# Vorm opties: driehoek, halveCirkel, rechthoek
+driehoek groen
+rechthoek roze
+halveCirkel oranje
+#rechthoek oranje
