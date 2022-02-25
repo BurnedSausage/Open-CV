@@ -1,6 +1,7 @@
 # Kleur opties: groen, roze, geel, oranje.
 # Vorm opties: driehoek, halveCirkel, rechthoek
+# Format:
+# vorm + " " + kleur
 driehoek groen
 rechthoek roze
-halveCirkel oranje
-#rechthoek oranje
+halveCirkel oranje#Comments werken ook zo
