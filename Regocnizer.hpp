@@ -17,6 +17,12 @@ public:
      * constructor
      */
     Regocnizer(){};
+
+    /**
+     * Constructor
+     * @param ogImage construct with the image to use
+     */
+    Regocnizer(cv::Mat ogImage){ogImg = ogImage};
     /**
      * destructor
      */
@@ -34,7 +40,7 @@ public:
      * The function to call settings window
      * @param batch 1 if its batch processing needed for trackbar callback func
      */
-    void createTrackbars(int batch);
+    //void createTrackbars(int batch);
 
 private:
     /**
@@ -88,10 +94,10 @@ private:
     cv::Scalar pinkLower = cv::Scalar(120,120,180);
     cv::Scalar pinkUpper = cv::Scalar(180,255,255);
 
-    int batch = 0;
-    cv::Mat ogImg;
-    std::vector<std::string> shaps;
-    std::vector<std::string> colors;
+//    int batch = 0;
+//    cv::Mat ogImg;
+//    std::vector<std::string> shaps;
+//    std::vector<std::string> colors;
 
 };
 

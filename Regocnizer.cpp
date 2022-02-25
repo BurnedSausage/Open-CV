@@ -133,26 +133,24 @@ cv::Mat Regocnizer::shapeDetection(cv::Mat originalImg, cv::Mat colourImg, std::
 }
 
 void Regocnizer::filterContinues(cv::Mat originalImg) {
-    ogImg = originalImg;
     clock_t time = clock();
-    std::cout << orangeLower << std::endl;
-    cv::Mat orangeImg = filterColour(originalImg, orangeLower, orangeUpper);
-    cv::Mat greenImg = filterColour(originalImg, greenLower, greenUpper);
-    cv::Mat pinkImg = filterColour(originalImg, pinkLower, pinkUpper);
-    cv::Mat yellowImg = filterColour(originalImg, yellowLower, yellowUpper);
 
-    originalImg = shapeDetection(originalImg, orangeImg, "Oranje", time);
+    cv::Mat orangeImg = filterColour(ogImg, orangeLower, orangeUpper);
+    cv::Mat greenImg = filterColour(ogImg, greenLower, greenUpper);
+    cv::Mat pinkImg = filterColour(ogImg, pinkLower, pinkUpper);
+    cv::Mat yellowImg = filterColour(ogImg, yellowLower, yellowUpper);
+
+    originalImg = shapeDetection(ogImg, orangeImg, "Oranje", time);
     originalImg = shapeDetection(originalImg, greenImg, "Groen", time);
     originalImg = shapeDetection(originalImg, pinkImg, "Roze", time);
     originalImg = shapeDetection(originalImg, yellowImg, "Geel", time);
 
     cv::imshow("Output", originalImg);
-    cv::imshow("Mask", orangeImg);
+    //cv::imshow("Mask", orangeImg);
 }
 
 void Regocnizer::runBatch(cv::Mat originalImg, std::vector<std::string> shape, std::vector<std::string> colour)
 {
-    ogImg = originalImg;
     shaps = shape;
     colors = colour;
 
@@ -221,44 +219,43 @@ void Regocnizer::setBoundries(int, void* object)
     if(reg->batch == 0)
     {
         reg->filterContinues(reg->ogImg);
-        std::cout << "done" << std::endl;
     } else {
         reg->runBatch(reg->ogImg, reg->shaps, reg->colors);
     }
 }
 
-void Regocnizer::createTrackbars(int btch)
-{
-    batch = btch;
-    cv::namedWindow("windowOrange", cv::WINDOW_AUTOSIZE);
-    cv::createTrackbar("OrangeUpperH", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("OrangeLowerH", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("OrangeUpperS", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("OrangeLowerS", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("OrangeUpperV", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("OrangeLowerV", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
-
-    cv::namedWindow("windowGreen", cv::WINDOW_AUTOSIZE);
-    cv::createTrackbar("GreenUpperH", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("GreenLowerH", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("GreenUpperS", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("GreenLowerS", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("GreenUpperV", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("GreenLowerV", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
-
-    cv::namedWindow("windowPink", cv::WINDOW_AUTOSIZE);
-    cv::createTrackbar("PinkUpperH", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("PinkLowerH", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("PinkUpperS", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("PinkLowerS", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("PinkUpperV", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("PinkLowerV", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
-
-    cv::namedWindow("windowYellow", cv::WINDOW_AUTOSIZE);
-    cv::createTrackbar("YellowUpperH", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("YellowLowerH", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("YellowUpperS", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("YellowLowerS", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("YellowUpperV", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
-    cv::createTrackbar("YellowLowerV", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
-}
+//void Regocnizer::createTrackbars(int btch)
+//{
+//    batch = btch;
+//    cv::namedWindow("windowOrange", cv::WINDOW_AUTOSIZE);
+//    cv::createTrackbar("OrangeUpperH", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("OrangeLowerH", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("OrangeUpperS", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("OrangeLowerS", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("OrangeUpperV", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("OrangeLowerV", "windowOrange", 0, 255, &Regocnizer::setBoundries, this);
+//
+//    cv::namedWindow("windowGreen", cv::WINDOW_AUTOSIZE);
+//    cv::createTrackbar("GreenUpperH", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("GreenLowerH", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("GreenUpperS", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("GreenLowerS", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("GreenUpperV", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("GreenLowerV", "windowGreen", 0, 255, &Regocnizer::setBoundries, this);
+//
+//    cv::namedWindow("windowPink", cv::WINDOW_AUTOSIZE);
+//    cv::createTrackbar("PinkUpperH", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("PinkLowerH", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("PinkUpperS", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("PinkLowerS", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("PinkUpperV", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("PinkLowerV", "windowPink", 0, 255, &Regocnizer::setBoundries, this);
+//
+//    cv::namedWindow("windowYellow", cv::WINDOW_AUTOSIZE);
+//    cv::createTrackbar("YellowUpperH", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("YellowLowerH", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("YellowUpperS", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("YellowLowerS", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("YellowUpperV", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
+//    cv::createTrackbar("YellowLowerV", "windowYellow", 0, 255, &Regocnizer::setBoundries, this);
+//}

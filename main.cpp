@@ -18,8 +18,6 @@ int main(int argc, char **argv)
             "{webcam   |<none>            | ID van de webcam. }";
     cv::CommandLineParser clParser(argc, argv, clKeys);
 
-    Regocnizer regocnizer;
-
     //Do webcam shit anders standaard img
     cv::Mat originalImg;
 
@@ -31,23 +29,23 @@ int main(int argc, char **argv)
         {
             std::cout << "error opening cam" << std::endl;
         }
-        std::cout << "1" << std::endl;
         camera.read(originalImg);
-        std::cout << "2" << std::endl;
 
     } else {
         std::string image_path = cv::samples::findFile("img.png");
         originalImg = cv::imread(image_path, cv::IMREAD_COLOR);
     }
 
+    Regocnizer regocnizer(originalImg);
+
     if(clParser.get<std::string>("mode") == "i")
     {
-        regocnizer.createTrackbars(0);
+        //regocnizer.createTrackbars(0);
         regocnizer.filterContinues(originalImg);
 
     } else if(clParser.get<std::string>("mode") == "b")
     {
-        regocnizer.createTrackbars(1);
+        //regocnizer.createTrackbars(1);
         //parse batch
         std::string fileName = clParser.get<std::string>("file");
         std::ifstream batchFile(fileName);
